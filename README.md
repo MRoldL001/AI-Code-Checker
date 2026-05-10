@@ -79,7 +79,7 @@ code --install-extension code-checker-1.0.0.vsix
 
 1. 打开任意代码文件
 2. 插件会自动检查代码质量并在状态栏显示分数
-3. 按 `Ctrl+Shift+C` / `Cmd+Shift+C` 手动触发检查
+3. 按 `Ctrl+Alt+C` / `Cmd+Alt+C` 手动触发检查
 
 ---
 
@@ -194,7 +194,7 @@ vsce package
 
 ## ⌨️ 命令
 
-- **代码检查器：检查代码质量** - 手动触发代码质量检查（Ctrl+Shift+C / Cmd+Shift+C）
+- **代码检查器：检查代码质量** - 手动触发代码质量检查（Ctrl+Alt+C / Cmd+Alt+C）
 
 ---
 

@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="ai-code-checker.png" alt="LOGO" width="100">
+  <img src="ai-code-checker-title.png" alt="LOGO" width="400">
 </div>
 
 <br/>

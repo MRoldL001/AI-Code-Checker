@@ -7,6 +7,9 @@ out/
 # VSCode test environment
 .vscode-test/
 
+# VSCode extension package
+*.vsix
+
 # Logs
 *.log
 npm-debug.log*

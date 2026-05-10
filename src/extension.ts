@@ -101,7 +101,7 @@ async function checkCodeQuality() {
   } catch (error) {
     console.error('代码质量检查错误:', error);
     statusBarItem.text = '$(error) 检查失败';
-    statusBarItem.color = '#f44336';
+    statusBarItem.color = '#ff6b6b';
   }
 }
 
@@ -116,15 +116,15 @@ function updateStatusBarItem(score?: number) {
   statusBarItem.text = `$(code) ${score} ${label}`;
 
   if (score >= 90) {
-    statusBarItem.color = '#00d26a';
+    statusBarItem.color = '#4ade80';
   } else if (score >= 80) {
-    statusBarItem.color = '#4fc3f7';
+    statusBarItem.color = '#38bdf8';
   } else if (score >= 70) {
-    statusBarItem.color = '#ffeb3b';
+    statusBarItem.color = '#facc15';
   } else if (score >= 60) {
-    statusBarItem.color = '#ff9800';
+    statusBarItem.color = '#fb923c';
   } else {
-    statusBarItem.color = '#f44336';
+    statusBarItem.color = '#f87171';
   }
 }
 

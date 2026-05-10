@@ -73,7 +73,8 @@ An AI-powered VSCode extension that checks code quality and displays colorful sc
 | `codeChecker.remote.model` | 远程 API 模型名称 | - |
 | `codeChecker.autoUpdate` | 启用自动更新 | `true` |
 | `codeChecker.updateDebounceMs` | 防抖时间（毫秒） | `2000` |
-| `codeChecker.statusBarPosition` | 状态栏位置 | `right` |
+| `codeChecker.statusBarPosition` | 状态栏位置（left/right） | `right` |
+| `codeChecker.systemPrompt` | AI 系统提示词 | - |
 
 ## 🛠️ 开发者 API
 

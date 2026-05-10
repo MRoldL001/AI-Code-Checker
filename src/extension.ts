@@ -1,9 +1,6 @@
 import * as vscode from 'vscode';
 import { AIService, getConfigFromVSCode } from './aiService';
-import {
-  getScoreColor,
-  getScoreLabel
-} from './scoreSystem';
+import { getScoreLabel } from './scoreSystem';
 
 let aiService: AIService;
 let statusBarItem: vscode.StatusBarItem;
@@ -121,18 +118,22 @@ function updateStatusBarItem(score?: number) {
   const label = getScoreLabel(score);
 
   statusBarItem.text = `$(code) ${score} ${label}`;
-  statusBarItem.color = '#ffffff';
 
   if (score >= 90) {
-    statusBarItem.backgroundColor = new vscode.ThemeColor('statusBarItem.successBackground');
+    statusBarItem.backgroundColor = { id: 'statusBar.background' };
+    statusBarItem.color = '#28a745';
   } else if (score >= 80) {
-    statusBarItem.backgroundColor = new vscode.ThemeColor('statusBarItem.infoBackground');
+    statusBarItem.backgroundColor = { id: 'statusBar.background' };
+    statusBarItem.color = '#1e90ff';
   } else if (score >= 70) {
-    statusBarItem.backgroundColor = new vscode.ThemeColor('statusBarItem.warningBackground');
+    statusBarItem.backgroundColor = { id: 'statusBar.background' };
+    statusBarItem.color = '#ffc107';
   } else if (score >= 60) {
-    statusBarItem.backgroundColor = new vscode.ThemeColor('statusBarItem.prominentBackground');
+    statusBarItem.backgroundColor = { id: 'statusBar.background' };
+    statusBarItem.color = '#fd7e14';
   } else {
-    statusBarItem.backgroundColor = new vscode.ThemeColor('statusBarItem.errorBackground');
+    statusBarItem.backgroundColor = { id: 'statusBar.background' };
+    statusBarItem.color = '#dc3545';
   }
 }
 

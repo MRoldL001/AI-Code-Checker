@@ -2,10 +2,8 @@ import * as vscode from 'vscode';
 import { AIService, getConfigFromVSCode } from './aiService';
 import { 
   getScoreColor, 
-  getScoreLabel, 
-  getHexColor,
-  ScoreColor,
-  SCORE_RANGES
+  getScoreLabel,
+  ScoreColor
 } from './scoreSystem';
 
 let aiService: AIService;
@@ -142,18 +140,6 @@ function updateStatusBarItem(score?: number) {
 
 export function getCurrentScore(): number {
   return currentScore;
-}
-
-export function getCurrentScoreColor(): ScoreColor {
-  return currentScore >= 0 ? getScoreColor(currentScore) : ScoreColor.RED;
-}
-
-export function getCurrentScoreLabel(): string {
-  return currentScore >= 0 ? getScoreLabel(currentScore) : '';
-}
-
-export function getCurrentScoreHexColor(): string {
-  return currentScore >= 0 ? getHexColor(getScoreColor(currentScore)) : '#ff4444';
 }
 
 export function deactivate() {

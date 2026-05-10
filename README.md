@@ -67,9 +67,6 @@ An AI-powered VSCode extension that checks code quality and displays colorful sc
 | 函数 | 描述 |
 |------|------|
 | `getCurrentScore()` | 获取当前分数（0-100，未检查则为-1） |
-| `getCurrentScoreColor()` | 获取分数颜色枚举（ScoreColor） |
-| `getCurrentScoreLabel()` | 获取分数等级（字符串） |
-| `getCurrentScoreHexColor()` | 获取十六进制颜色（如 "#ff4444"） |
 | `getScoreColor(score)` | 根据分数获取颜色枚举 |
 | `getScoreLabel(score)` | 根据分数获取等级 |
-| `getHexColor(color)` | 根据颜色枚举获取十六进制值 |
+| `ScoreColor` | 颜色枚举（RED, ORANGE, YELLOW, YELLOW_GREEN, GREEN） |

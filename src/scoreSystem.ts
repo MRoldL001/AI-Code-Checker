@@ -36,20 +36,3 @@ export function getScoreLabel(score: number): string {
   const range = SCORE_RANGES.find(r => clampedScore >= r.min && clampedScore <= r.max);
   return range ? range.label : '严重';
 }
-
-export function getHexColor(color: ScoreColor): string {
-  switch (color) {
-    case ScoreColor.RED:
-      return '#ff4444';
-    case ScoreColor.ORANGE:
-      return '#ff8800';
-    case ScoreColor.YELLOW:
-      return '#ffcc00';
-    case ScoreColor.YELLOW_GREEN:
-      return '#88cc00';
-    case ScoreColor.GREEN:
-      return '#00cc00';
-    default:
-      return '#ffffff';
-  }
-}

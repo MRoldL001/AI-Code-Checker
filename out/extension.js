@@ -2,9 +2,6 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.activate = activate;
 exports.getCurrentScore = getCurrentScore;
-exports.getCurrentScoreColor = getCurrentScoreColor;
-exports.getCurrentScoreLabel = getCurrentScoreLabel;
-exports.getCurrentScoreHexColor = getCurrentScoreHexColor;
 exports.deactivate = deactivate;
 const vscode = require("vscode");
 const aiService_1 = require("./aiService");
@@ -116,15 +113,6 @@ function updateStatusBarItem(score) {
 }
 function getCurrentScore() {
     return currentScore;
-}
-function getCurrentScoreColor() {
-    return currentScore >= 0 ? (0, scoreSystem_1.getScoreColor)(currentScore) : scoreSystem_1.ScoreColor.RED;
-}
-function getCurrentScoreLabel() {
-    return currentScore >= 0 ? (0, scoreSystem_1.getScoreLabel)(currentScore) : '';
-}
-function getCurrentScoreHexColor() {
-    return currentScore >= 0 ? (0, scoreSystem_1.getHexColor)((0, scoreSystem_1.getScoreColor)(currentScore)) : '#ff4444';
 }
 function deactivate() {
     if (debounceTimer) {

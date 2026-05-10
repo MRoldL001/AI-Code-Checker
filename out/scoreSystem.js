@@ -6,7 +6,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.SCORE_RANGES = exports.ScoreColor = void 0;
 exports.getScoreColor = getScoreColor;
 exports.getScoreLabel = getScoreLabel;
-exports.getHexColor = getHexColor;
 var ScoreColor;
 (function (ScoreColor) {
     ScoreColor["RED"] = "red";
@@ -31,21 +30,5 @@ function getScoreLabel(score) {
     const clampedScore = Math.max(0, Math.min(100, score));
     const range = exports.SCORE_RANGES.find(r => clampedScore >= r.min && clampedScore <= r.max);
     return range ? range.label : '严重';
-}
-function getHexColor(color) {
-    switch (color) {
-        case ScoreColor.RED:
-            return '#ff4444';
-        case ScoreColor.ORANGE:
-            return '#ff8800';
-        case ScoreColor.YELLOW:
-            return '#ffcc00';
-        case ScoreColor.YELLOW_GREEN:
-            return '#88cc00';
-        case ScoreColor.GREEN:
-            return '#00cc00';
-        default:
-            return '#ffffff';
-    }
 }
 //# sourceMappingURL=scoreSystem.js.map

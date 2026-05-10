@@ -2,7 +2,7 @@
   <img src="ai-code-checker.png" alt="LOGO" width="100">
 </div>
 
-<br\>
+<br/>
 
 An AI-powered VSCode extension that checks code quality and displays colorful scores in the status bar.
 

@@ -39,13 +39,9 @@ An AI-powered VSCode extension that checks code quality and displays colorful sc
 3. 启动 Ollama：`ollama serve`
 4. 设置 `codeChecker.aiProvider` 为 `local`
 
-#### OpenAI
+#### 远程 API
 
-设置 `codeChecker.aiProvider` 为 `openai`，配置 API 密钥和模型。
-
-#### 自定义 API
-
-设置 `codeChecker.aiProvider` 为 `custom`，配置 API 地址和密钥。
+设置 `codeChecker.aiProvider` 为 `remote`，配置 API 地址、密钥和模型名称。
 
 ### 使用
 
@@ -55,13 +51,13 @@ An AI-powered VSCode extension that checks code quality and displays colorful sc
 
 | 设置 | 描述 | 默认值 |
 |------|------|--------|
-| `codeChecker.aiProvider` | AI 服务提供商 | `local` |
-| `codeChecker.openai.apiKey` | OpenAI API 密钥 | - |
-| `codeChecker.openai.model` | OpenAI 模型 | `gpt-4-turbo` |
-| `codeChecker.custom.endpoint` | 自定义 API 地址 | - |
-| `codeChecker.custom.apiKey` | 自定义 API 密钥 | - |
+| `codeChecker.aiProvider` | AI 服务提供商（local=本地, remote=远程） | `local` |
+| `codeChecker.remote.endpoint` | 远程 API 地址 | - |
+| `codeChecker.remote.apiKey` | 远程 API 密钥（可选） | - |
+| `codeChecker.remote.model` | 远程 API 模型名称 | - |
 | `codeChecker.autoUpdate` | 启用自动更新 | `true` |
 | `codeChecker.updateDebounceMs` | 防抖时间（毫秒） | `2000` |
+| `codeChecker.statusBarPosition` | 状态栏位置 | `right` |
 
 ## 🔌 开发者 API
 

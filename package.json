@@ -34,36 +34,25 @@
           "type": "string",
           "enum": [
             "local",
-            "openai",
-            "custom"
+            "remote"
           ],
           "default": "local",
-          "description": "选择AI服务提供商"
+          "description": "选择AI服务提供商（local=本地Ollama, remote=远程API）"
         },
-        "codeChecker.openai.apiKey": {
+        "codeChecker.remote.endpoint": {
           "type": "string",
           "default": "",
-          "description": "OpenAI API密钥"
+          "description": "远程API地址（支持OpenAI兼容格式）"
         },
-        "codeChecker.openai.model": {
-          "type": "string",
-          "default": "gpt-4-turbo",
-          "description": "使用的OpenAI模型"
-        },
-        "codeChecker.custom.endpoint": {
+        "codeChecker.remote.apiKey": {
           "type": "string",
           "default": "",
-          "description": "自定义AI API地址"
+          "description": "远程API密钥（可选）"
         },
-        "codeChecker.custom.apiKey": {
+        "codeChecker.remote.model": {
           "type": "string",
           "default": "",
-          "description": "自定义AI API密钥"
-        },
-        "codeChecker.custom.model": {
-          "type": "string",
-          "default": "",
-          "description": "自定义AI模型名称"
+          "description": "远程API模型名称"
         },
         "codeChecker.autoUpdate": {
           "type": "boolean",

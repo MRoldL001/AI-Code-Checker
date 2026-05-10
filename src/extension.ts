@@ -2,71 +2,61 @@ import * as vscode from 'vscode';
 import { AIService, getConfigFromVSCode } from './aiService';
 import { getScoreLabel } from './scoreSystem';
 
-let aiService: AIService;
-let statusBarItem: vscode.StatusBarItem;
+let aiService: AIService | undefined;
+let statusBarItem: vscode.StatusBarItem | undefined;
 let debounceTimer: NodeJS.Timeout | null = null;
 let currentScore: number = -1;
 
 export function activate(context: vscode.ExtensionContext) {
   console.log('代码检查器已激活！');
 
-  const config = getConfigFromVSCode();
-  aiService = new AIService(config);
+  try {
+    const config = getConfigFromVSCode();
+    aiService = new AIService(config);
 
-  statusBarItem = createStatusBarItem();
-  updateStatusBarItem();
+    statusBarItem = vscode.window.createStatusBarItem(
+      vscode.StatusBarAlignment.Right,
+      100
+    );
+    statusBarItem.command = 'codeChecker.checkCodeQuality';
+    statusBarItem.text = '$(code) 检查代码';
+    statusBarItem.tooltip = '点击手动检查代码质量';
+    statusBarItem.show();
 
-  const checkCommand = vscode.commands.registerCommand('codeChecker.checkCodeQuality', async () => {
-    await checkCodeQuality();
-  });
+    const checkCommand = vscode.commands.registerCommand('codeChecker.checkCodeQuality', async () => {
+      await checkCodeQuality();
+    });
 
-  const editor = vscode.window.activeTextEditor;
-  if (editor) {
-    debounceCheckCodeQuality();
-  }
-
-  vscode.window.onDidChangeActiveTextEditor(() => {
-    debounceCheckCodeQuality();
-  });
-
-  vscode.workspace.onDidChangeTextDocument(() => {
-    debounceCheckCodeQuality();
-  });
-
-  vscode.workspace.onDidChangeConfiguration(() => {
-    const newConfig = getConfigFromVSCode();
-    aiService.updateConfig(newConfig);
-    if (statusBarItem) {
-      statusBarItem.dispose();
+    const editor = vscode.window.activeTextEditor;
+    if (editor) {
+      debounceCheckCodeQuality();
     }
-    statusBarItem = createStatusBarItem();
-    updateStatusBarItem();
-  });
 
-  context.subscriptions.push(checkCommand, statusBarItem);
-}
+    vscode.window.onDidChangeActiveTextEditor(() => {
+      debounceCheckCodeQuality();
+    });
 
-function createStatusBarItem(): vscode.StatusBarItem {
-  const config = vscode.workspace.getConfiguration('codeChecker');
-  const position = config.get<'left' | 'right'>('statusBarPosition', 'right');
+    vscode.workspace.onDidChangeTextDocument(() => {
+      debounceCheckCodeQuality();
+    });
 
-  const item = vscode.window.createStatusBarItem(
-    position === 'left'
-      ? vscode.StatusBarAlignment.Left
-      : vscode.StatusBarAlignment.Right,
-    100
-  );
-  item.command = 'codeChecker.checkCodeQuality';
-  item.tooltip = '点击手动检查代码质量';
-  item.show();
-  return item;
+    context.subscriptions.push(checkCommand);
+
+    if (statusBarItem) {
+      context.subscriptions.push(statusBarItem);
+    }
+
+  } catch (error) {
+    console.error('扩展激活错误:', error);
+    vscode.window.showErrorMessage(`代码检查器激活失败: ${error}`);
+  }
 }
 
 function debounceCheckCodeQuality() {
   const config = vscode.workspace.getConfiguration('codeChecker');
   const autoUpdate = config.get<boolean>('autoUpdate', true);
 
-  if (!autoUpdate) {
+  if (!autoUpdate || !statusBarItem) {
     return;
   }
 
@@ -82,7 +72,7 @@ function debounceCheckCodeQuality() {
 
 async function checkCodeQuality() {
   const editor = vscode.window.activeTextEditor;
-  if (!editor) {
+  if (!editor || !statusBarItem) {
     return;
   }
 
@@ -92,6 +82,10 @@ async function checkCodeQuality() {
   const code = editor.document.getText();
 
   try {
+    if (!aiService) {
+      aiService = new AIService(getConfigFromVSCode());
+    }
+
     const score = await aiService.checkCodeQuality(code);
 
     if (score >= 0) {
@@ -100,12 +94,18 @@ async function checkCodeQuality() {
     }
   } catch (error) {
     console.error('代码质量检查错误:', error);
-    statusBarItem.text = '$(error) 检查失败';
-    statusBarItem.color = '#ff6b6b';
+    if (statusBarItem) {
+      statusBarItem.text = '$(error) 检查失败';
+      statusBarItem.color = '#ff6b6b';
+    }
   }
 }
 
 function updateStatusBarItem(score?: number) {
+  if (!statusBarItem) {
+    return;
+  }
+
   if (score === undefined || score < 0) {
     statusBarItem.text = '$(code) 检查代码';
     statusBarItem.color = undefined;
@@ -116,15 +116,15 @@ function updateStatusBarItem(score?: number) {
   statusBarItem.text = `$(code) ${score} ${label}`;
 
   if (score >= 90) {
-    statusBarItem.color = '#4ade80';
+    statusBarItem.color = '#00ff00';
   } else if (score >= 80) {
-    statusBarItem.color = '#38bdf8';
+    statusBarItem.color = '#00bfff';
   } else if (score >= 70) {
-    statusBarItem.color = '#facc15';
+    statusBarItem.color = '#ffff00';
   } else if (score >= 60) {
-    statusBarItem.color = '#fb923c';
+    statusBarItem.color = '#ff9900';
   } else {
-    statusBarItem.color = '#f87171';
+    statusBarItem.color = '#ff0000';
   }
 }
 

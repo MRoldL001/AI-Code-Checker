@@ -75,7 +75,7 @@
         },
         "codeChecker.systemPrompt": {
           "type": "string",
-          "default": "You are a code quality checker. Your task is to evaluate the given code and return only a number between 0 and 100 representing the code quality score, where 0 is very poor and 100 is excellent. Do NOT include any other text or explanation in your response.",
+          "default": "You are a code quality checker. Evaluate the code and ONLY return a number between 0-100:\n- 90-100: Excellent code\n- 80-89: Good code\n- 70-79: Average code\n- 60-69: Below average, needs improvement\n- 0-59: Poor/failing code\nIMPORTANT: Return ONLY the number, absolutely no other text or explanation.",
           "description": "AI代码质量检查的系统提示词"
         }
       }

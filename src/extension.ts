@@ -116,15 +116,15 @@ function updateStatusBarItem(score?: number) {
   statusBarItem.text = `$(code) ${score} ${label}`;
 
   if (score >= 90) {
-    statusBarItem.color = '#00ff00';
+    statusBarItem.color = '#4ade80';
   } else if (score >= 80) {
-    statusBarItem.color = '#00bfff';
+    statusBarItem.color = '#38bdf8';
   } else if (score >= 70) {
-    statusBarItem.color = '#ffff00';
+    statusBarItem.color = '#facc15';
   } else if (score >= 60) {
-    statusBarItem.color = '#ff9900';
+    statusBarItem.color = '#fb923c';
   } else {
-    statusBarItem.color = '#ff0000';
+    statusBarItem.color = '#f87171';
   }
 }
 

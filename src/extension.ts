@@ -96,7 +96,7 @@ async function checkCodeQuality() {
     console.error('代码质量检查错误:', error);
     if (statusBarItem) {
       statusBarItem.text = '$(error) 检查失败';
-      statusBarItem.color = '#ff6b6b';
+      statusBarItem.color = new vscode.ThemeColor('statusBarItem.foreground');
     }
   }
 }
@@ -108,7 +108,7 @@ function updateStatusBarItem(score?: number) {
 
   if (score === undefined || score < 0) {
     statusBarItem.text = '$(code) 检查代码';
-    statusBarItem.color = undefined;
+    statusBarItem.color = new vscode.ThemeColor('statusBarItem.foreground');
     statusBarItem.backgroundColor = undefined;
     return;
   }
@@ -117,19 +117,19 @@ function updateStatusBarItem(score?: number) {
   statusBarItem.text = `$(code) ${score} ${label}`;
 
   if (score >= 90) {
-    statusBarItem.backgroundColor = '#dcfce7' as any;
+    statusBarItem.backgroundColor = new vscode.ThemeColor('statusBarItem.background');
     statusBarItem.color = '#166534';
   } else if (score >= 80) {
-    statusBarItem.backgroundColor = '#e0f2fe' as any;
+    statusBarItem.backgroundColor = new vscode.ThemeColor('statusBarItem.background');
     statusBarItem.color = '#0369a1';
   } else if (score >= 70) {
-    statusBarItem.backgroundColor = '#fef9c3' as any;
+    statusBarItem.backgroundColor = new vscode.ThemeColor('statusBarItem.background');
     statusBarItem.color = '#854d0e';
   } else if (score >= 60) {
-    statusBarItem.backgroundColor = '#ffedd5' as any;
+    statusBarItem.backgroundColor = new vscode.ThemeColor('statusBarItem.background');
     statusBarItem.color = '#9a3412';
   } else {
-    statusBarItem.backgroundColor = '#fee2e2' as any;
+    statusBarItem.backgroundColor = new vscode.ThemeColor('statusBarItem.background');
     statusBarItem.color = '#991b1b';
   }
 }

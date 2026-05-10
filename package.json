@@ -1,0 +1,124 @@
+{
+  "name": "code-checker",
+  "displayName": "代码检查器",
+  "description": "智能代码质量检查工具，AI驱动评分，多彩状态栏显示",
+  "version": "1.0.0",
+  "publisher": "mefisto04",
+  "engines": {
+    "vscode": "^1.74.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "onLanguage:javascript",
+    "onLanguage:typescript",
+    "onLanguage:javascriptreact",
+    "onLanguage:typescriptreact",
+    "onLanguage:python",
+    "onLanguage:html",
+    "onLanguage:css"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "codeChecker.checkCodeQuality",
+        "title": "代码检查器：检查代码质量"
+      }
+    ],
+    "configuration": {
+      "title": "代码检查器",
+      "properties": {
+        "codeChecker.aiProvider": {
+          "type": "string",
+          "enum": [
+            "local",
+            "openai",
+            "custom"
+          ],
+          "default": "local",
+          "description": "选择AI服务提供商"
+        },
+        "codeChecker.openai.apiKey": {
+          "type": "string",
+          "default": "",
+          "description": "OpenAI API密钥"
+        },
+        "codeChecker.openai.model": {
+          "type": "string",
+          "default": "gpt-4-turbo",
+          "description": "使用的OpenAI模型"
+        },
+        "codeChecker.custom.endpoint": {
+          "type": "string",
+          "default": "",
+          "description": "自定义AI API地址"
+        },
+        "codeChecker.custom.apiKey": {
+          "type": "string",
+          "default": "",
+          "description": "自定义AI API密钥"
+        },
+        "codeChecker.custom.model": {
+          "type": "string",
+          "default": "",
+          "description": "自定义AI模型名称"
+        },
+        "codeChecker.autoUpdate": {
+          "type": "boolean",
+          "default": true,
+          "description": "启用代码质量分数自动更新"
+        },
+        "codeChecker.updateDebounceMs": {
+          "type": "number",
+          "default": 2000,
+          "description": "自动更新的防抖时间（毫秒）"
+        },
+        "codeChecker.statusBarPosition": {
+          "type": "string",
+          "enum": [
+            "left",
+            "right"
+          ],
+          "default": "right",
+          "description": "状态栏项位置"
+        },
+        "codeChecker.systemPrompt": {
+          "type": "string",
+          "default": "You are a code quality checker. Your task is to evaluate the given code and return only a number between 0 and 100 representing the code quality score, where 0 is very poor and 100 is excellent. Do NOT include any other text or explanation in your response.",
+          "description": "AI代码质量检查的系统提示词"
+        }
+      }
+    },
+    "keybindings": [
+      {
+        "command": "codeChecker.checkCodeQuality",
+        "key": "ctrl+shift+c",
+        "mac": "cmd+shift+c",
+        "when": "editorTextFocus"
+      }
+    ]
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "pretest": "npm run compile && npm run lint",
+    "lint": "eslint src --ext ts",
+    "test": "vscode-test"
+  },
+  "devDependencies": {
+    "@types/node": "^20.x",
+    "@types/vscode": "^1.74.0",
+    "typescript": "^5.3.3",
+    "eslint": "^8.56.0",
+    "@typescript-eslint/eslint-plugin": "^6.19.0",
+    "@typescript-eslint/parser": "^6.19.0",
+    "@vscode/test-cli": "^0.0.4",
+    "@vscode/test-electron": "^2.3.9"
+  },
+  "dependencies": {
+    "axios": "^1.6.7"
+  }
+}

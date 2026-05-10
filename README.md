@@ -63,7 +63,7 @@ An AI-powered VSCode extension that checks code quality and displays colorful sc
 | `codeChecker.autoUpdate` | 启用自动更新 | `true` |
 | `codeChecker.updateDebounceMs` | 防抖时间（毫秒） | `2000` |
 
-## 🛠️ 开发者 API
+## 🔌 开发者 API
 
 | 函数 | 描述 |
 |------|------|

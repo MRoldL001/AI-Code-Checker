@@ -2,8 +2,7 @@ import * as vscode from 'vscode';
 import { AIService, getConfigFromVSCode } from './aiService';
 import { 
   getScoreColor, 
-  getScoreLabel,
-  ScoreColor
+  getScoreLabel
 } from './scoreSystem';
 
 let aiService: AIService;
@@ -109,15 +108,15 @@ async function checkCodeQuality() {
   }
 }
 
-function getStatusBarThemeColor(color: ScoreColor): string {
+function getStatusBarThemeColor(color: string): string {
   switch (color) {
-    case ScoreColor.RED:
+    case '#dc3545':
       return 'statusBarItem.errorForeground';
-    case ScoreColor.ORANGE:
-    case ScoreColor.YELLOW:
-    case ScoreColor.YELLOW_GREEN:
+    case '#fd7e14':
+    case '#ffc107':
+    case '#9acd32':
       return 'statusBarItem.warningForeground';
-    case ScoreColor.GREEN:
+    case '#28a745':
       return 'statusBarItem.remoteForeground';
     default:
       return 'statusBarItem.foreground';

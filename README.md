@@ -16,11 +16,11 @@ An AI-powered VSCode extension that checks code quality and displays colorful sc
 
 | 分数范围 | 颜色 | 等级 |
 |---------|------|------|
-| 90-100 | 绿色 | 优秀 |
-| 80-89 | 黄绿色 | 良好 |
-| 70-79 | 黄色 | 一般 |
-| 60-69 | 橙色 | 较差 |
-| 0-59 | 红色 | 严重 |
+| 90-100 | 绿色 (#28a745) | 优秀 |
+| 80-89 | 黄绿色 (#9acd32) | 良好 |
+| 70-79 | 黄色 (#ffc107) | 一般 |
+| 60-69 | 橙色 (#fd7e14) | 较差 |
+| 0-59 | 红色 (#dc3545) | 严重 |
 
 ## 快速开始
 
@@ -68,6 +68,5 @@ An AI-powered VSCode extension that checks code quality and displays colorful sc
 | 函数 | 描述 |
 |------|------|
 | `getCurrentScore()` | 获取当前分数（0-100，未检查则为-1） |
-| `getScoreColor(score)` | 根据分数获取颜色枚举 |
+| `getScoreColor(score)` | 根据分数获取 hex 颜色值 |
 | `getScoreLabel(score)` | 根据分数获取等级 |
-| `ScoreColor` | 颜色枚举（RED, ORANGE, YELLOW, YELLOW_GREEN, GREEN） |

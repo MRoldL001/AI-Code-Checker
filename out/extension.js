@@ -88,13 +88,13 @@ async function checkCodeQuality() {
 }
 function getStatusBarThemeColor(color) {
     switch (color) {
-        case scoreSystem_1.ScoreColor.RED:
+        case '#dc3545':
             return 'statusBarItem.errorForeground';
-        case scoreSystem_1.ScoreColor.ORANGE:
-        case scoreSystem_1.ScoreColor.YELLOW:
-        case scoreSystem_1.ScoreColor.YELLOW_GREEN:
+        case '#fd7e14':
+        case '#ffc107':
+        case '#9acd32':
             return 'statusBarItem.warningForeground';
-        case scoreSystem_1.ScoreColor.GREEN:
+        case '#28a745':
             return 'statusBarItem.remoteForeground';
         default:
             return 'statusBarItem.foreground';

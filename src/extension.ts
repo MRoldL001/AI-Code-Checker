@@ -29,11 +29,11 @@ export function activate(context: vscode.ExtensionContext) {
 
     const editor = vscode.window.activeTextEditor;
     if (editor) {
-      debounceCheckCodeQuality();
+      checkCodeQuality();
     }
 
     vscode.window.onDidChangeActiveTextEditor(() => {
-      debounceCheckCodeQuality();
+      checkCodeQuality();
     });
 
     vscode.workspace.onDidChangeTextDocument(() => {
@@ -109,7 +109,7 @@ function updateStatusBarItem(score?: number) {
   if (score === undefined || score < 0) {
     statusBarItem.text = '$(code) 检查代码';
     statusBarItem.color = new vscode.ThemeColor('statusBar.foreground');
-    statusBarItem.backgroundColor = undefined;
+    statusBarItem.backgroundColor = '#3c3c3c' as any;
     return;
   }
 

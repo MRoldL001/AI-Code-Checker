@@ -4,6 +4,10 @@
   "description": "智能代码质量检查工具，AI驱动评分，多彩状态栏显示",
   "version": "1.0.0",
   "publisher": "MRoldL001",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/MRoldL001/AI-Code-Checker.git"
+  },
   "engines": {
     "vscode": "^1.74.0"
   },

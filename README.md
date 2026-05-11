@@ -1,5 +1,6 @@
-<div align="center">
+<div align="center" style="display: flex; justify-content: center; align-items: center; gap: 20px;">
   <img src="ai-code-checker-title.png" alt="LOGO" width="400">
+    <img src="https://raw.githubusercontent.com/MRoldL001/AI-Code-Checker/main/chobits.png" alt="Chobits" height="100">
 </div>
 
 <br/>
@@ -37,7 +38,7 @@ An AI-powered VSCode extension that checks code quality and displays colorful sc
 #### 方式一：从 VSCode 市场安装（推荐）
 
 1. 在 VSCode 中打开扩展视图（Ctrl+Shift+X / Cmd+Shift+X）
-2. 搜索 "Code Checker"
+2. 搜索 "Simple AI Code Checker"
 3. 点击安装
 
 #### 方式二：从发行版安装

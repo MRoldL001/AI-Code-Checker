@@ -1,11 +1,30 @@
 import * as vscode from 'vscode';
 import { AIService, getConfigFromVSCode } from './aiService';
-import { getScoreLabel } from './scoreSystem';
+import { getScoreLabel, getScoreColor } from './scoreSystem';
 
 let aiService: AIService | undefined;
 let statusBarItem: vscode.StatusBarItem | undefined;
 let debounceTimer: NodeJS.Timeout | null = null;
 let currentScore: number = -1;
+
+function createStatusBarItem(context: vscode.ExtensionContext): vscode.StatusBarItem {
+  if (statusBarItem) {
+    statusBarItem.dispose();
+  }
+
+  const config = vscode.workspace.getConfiguration('codeChecker');
+  const position = config.get<'left' | 'right'>('statusBarPosition', 'right');
+  const alignment = position === 'left' ? vscode.StatusBarAlignment.Left : vscode.StatusBarAlignment.Right;
+
+  statusBarItem = vscode.window.createStatusBarItem(alignment, 100);
+  statusBarItem.command = 'codeChecker.checkCodeQuality';
+  statusBarItem.text = '$(code) 检查代码';
+  statusBarItem.tooltip = '点击手动检查代码质量';
+  statusBarItem.show();
+
+  context.subscriptions.push(statusBarItem);
+  return statusBarItem;
+}
 
 export function activate(context: vscode.ExtensionContext) {
   console.log('代码检查器已激活！');
@@ -14,17 +33,19 @@ export function activate(context: vscode.ExtensionContext) {
     const config = getConfigFromVSCode();
     aiService = new AIService(config);
 
-    statusBarItem = vscode.window.createStatusBarItem(
-      vscode.StatusBarAlignment.Right,
-      100
-    );
-    statusBarItem.command = 'codeChecker.checkCodeQuality';
-    statusBarItem.text = '$(code) 检查代码';
-    statusBarItem.tooltip = '点击手动检查代码质量';
-    statusBarItem.show();
+    createStatusBarItem(context);
 
     const checkCommand = vscode.commands.registerCommand('codeChecker.checkCodeQuality', async () => {
       await checkCodeQuality();
+    });
+
+    context.subscriptions.push(checkCommand);
+
+    vscode.workspace.onDidChangeConfiguration((event) => {
+      if (event.affectsConfiguration('codeChecker.statusBarPosition')) {
+        createStatusBarItem(context);
+        updateStatusBarItem(currentScore >= 0 ? currentScore : undefined);
+      }
     });
 
     const editor = vscode.window.activeTextEditor;
@@ -109,29 +130,12 @@ function updateStatusBarItem(score?: number) {
   if (score === undefined || score < 0) {
     statusBarItem.text = '$(code) 检查代码';
     statusBarItem.color = new vscode.ThemeColor('statusBar.foreground');
-    statusBarItem.backgroundColor = '#3c3c3c' as any;
     return;
   }
 
   const label = getScoreLabel(score);
   statusBarItem.text = `$(code) ${score} ${label}`;
-
-  if (score >= 90) {
-    statusBarItem.backgroundColor = '#3c3c3c' as any;
-    statusBarItem.color = '#2ea043';
-  } else if (score >= 80) {
-    statusBarItem.backgroundColor = '#3c3c3c' as any;
-    statusBarItem.color = '#3794ff';
-  } else if (score >= 70) {
-    statusBarItem.backgroundColor = '#3c3c3c' as any;
-    statusBarItem.color = '#dcdcaa';
-  } else if (score >= 60) {
-    statusBarItem.backgroundColor = '#3c3c3c' as any;
-    statusBarItem.color = '#ce9178';
-  } else {
-    statusBarItem.backgroundColor = '#3c3c3c' as any;
-    statusBarItem.color = '#f14c4c';
-  }
+  statusBarItem.color = getScoreColor(score);
 }
 
 export function getCurrentScore(): number {

@@ -85,7 +85,7 @@
         },
         "codeChecker.systemPrompt": {
           "type": "string",
-          "default": "You are a code quality evaluator. Score the code 0-100:\n- 90-100: Excellent, production-ready code\n- 80-89: Good quality, minor issues\n- 70-79: Acceptable, some problems\n- 60-69: Just acceptable, needs improvement\n- 0-59: Poor, serious issues\nIf the code runs without errors and is functional, give at least 60 points.\nIMPORTANT: Return a number like 73, 81, 67, 88, 62, 77, etc. Avoid always returning multiples of 5. Return ONLY the number.",
+          "default": "You are a code quality evaluator. Score the code 0-100:\n- 90-100: Excellent, production-ready code\n- 80-89: Good quality, minor issues\n- 70-79: Acceptable, some problems\n- 60-69: Just acceptable, needs improvement\n- 0-59: Poor, serious issues\nIf the code runs without errors and is functional, give at least 60 points.\nIMPORTANT: Return a number like 73, 81, 67, 88, 62, 77, etc. Avoid always returning multiples of 5. Return ONLY the number.\n\nAdditional reminders (IMPORTANT!):\n1. Be generous with scores! Do not be stingy with points.\n2. Evaluate from the perspective of an ordinary coder, not a professional developer.\n3. Do not hesitate to give high scores including 90-100.\n4. Most code written by ordinary developers deserves encouragement.",
           "description": "AI代码质量检查的系统提示词"
         }
       }

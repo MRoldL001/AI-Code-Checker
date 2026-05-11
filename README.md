@@ -10,7 +10,7 @@ An AI-powered VSCode extension that checks code quality and displays colorful sc
 
 ---
 
-## 功能
+## ✨ 功能
 
 - 彩色分数显示（红 → 橙 → 黄 → 蓝 → 绿）
 - AI集成（本地 Ollama 或远程 API）
@@ -18,17 +18,17 @@ An AI-powered VSCode extension that checks code quality and displays colorful sc
 - 快捷键（Ctrl+Alt+E / Cmd+Alt+E）
 - 可配置的系统提示词
 
-## 分数等级
+## 📊 分数等级
 
-| 分数范围 | 等级 | 颜色 |
-|---------|------|------|
-| 90-100 | 优秀 | `#2ea043` |
-| 80-89 | 良好 | `#3794ff` |
-| 70-79 | 一般 | `#dcdcaa` |
-| 60-69 | 较差 | `#ce9178` |
-| 0-59 | 严重 | `#f14c4c` |
+| 分数范围   | 等级  | 颜色        |
+| ------ | --- | --------- |
+| 90-100 | 优秀  | `#2ea043` |
+| 80-89  | 良好  | `#3794ff` |
+| 70-79  | 一般  | `#c9a227` |
+| 60-69  | 较差  | `#d35400` |
+| 0-59   | 严重  | `#ff3b30` |
 
-## 快速开始
+## 🚀 快速开始
 
 ### 安装
 
@@ -62,24 +62,24 @@ An AI-powered VSCode extension that checks code quality and displays colorful sc
 
 打开代码文件，插件自动检查并在状态栏显示分数，或按 `Ctrl+Alt+E` / `Cmd+Alt+E` 手动触发。
 
-## 配置
+## ⚙️ 配置
 
-| 设置 | 描述 | 默认值 |
-|------|------|--------|
-| `codeChecker.aiProvider` | AI 服务提供商（local=本地, remote=远程） | `local` |
-| `codeChecker.local.model` | 本地 Ollama 模型名称 | `llama2` |
-| `codeChecker.remote.endpoint` | 远程 API 地址 | - |
-| `codeChecker.remote.apiKey` | 远程 API 密钥（可选） | - |
-| `codeChecker.remote.model` | 远程 API 模型名称 | - |
-| `codeChecker.autoUpdate` | 启用自动更新 | `true` |
-| `codeChecker.updateDebounceMs` | 防抖时间（毫秒） | `2000` |
-| `codeChecker.statusBarPosition` | 状态栏位置（left/right） | `right` |
-| `codeChecker.systemPrompt` | AI 系统提示词 | 见 package.json |
+| 设置                              | 描述                            | 默认值            |
+| ------------------------------- | ----------------------------- | -------------- |
+| `codeChecker.aiProvider`        | AI 服务提供商（local=本地, remote=远程） | `local`        |
+| `codeChecker.local.model`       | 本地 Ollama 模型名称                | `llama2`       |
+| `codeChecker.remote.endpoint`   | 远程 API 地址                     | -              |
+| `codeChecker.remote.apiKey`     | 远程 API 密钥（可选）                 | -              |
+| `codeChecker.remote.model`      | 远程 API 模型名称                   | -              |
+| `codeChecker.autoUpdate`        | 启用自动更新                        | `true`         |
+| `codeChecker.updateDebounceMs`  | 防抖时间（毫秒）                      | `2000`         |
+| `codeChecker.statusBarPosition` | 状态栏位置（left/right）             | `right`        |
+| `codeChecker.systemPrompt`      | AI 系统提示词                      | 见 package.json |
 
-## 开发者 API
+## 🔌 开发者 API
 
-| 函数 | 描述 |
-|------|------|
-| `getCurrentScore()` | 获取当前分数（0-100，未检查则为-1） |
-| `getScoreColor(score)` | 根据分数获取 hex 颜色值 |
-| `getScoreLabel(score)` | 根据分数获取等级 |
+| 函数                     | 描述                    |
+| ---------------------- | --------------------- |
+| `getCurrentScore()`    | 获取当前分数（0-100，未检查则为-1） |
+| `getScoreColor(score)` | 根据分数获取 hex 颜色值        |
+| `getScoreLabel(score)` | 根据分数获取等级              |

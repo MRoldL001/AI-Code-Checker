@@ -2,7 +2,7 @@
   "name": "chobits-ai-code-checker",
   "displayName": "Chobits AI Code Checker",
   "description": "Smart Code Quality Checker: AI Scoring & Colorful Status Bar.",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "publisher": "MRoldL001",
   "icon": "ai-code-checker.png",
   "repository": {
@@ -46,7 +46,7 @@
         },
         "codeChecker.local.model": {
           "type": "string",
-          "default": "llama2",
+          "default": "",
           "description": "本地Ollama模型名称"
         },
         "codeChecker.remote.endpoint": {
